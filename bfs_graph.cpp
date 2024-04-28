@@ -50,6 +50,8 @@
 #include<map>
 #include<queue>
 #include<list>
+#include<stack>
+
 
 using namespace std;
 
@@ -84,6 +86,29 @@ void BFS(map<int,list<int>>& adjlist,int startNode){
     }
 }
 
+
+void DFS(map<int,list<int>>& adjlist,int s)
+{
+    map<int,bool> visited;
+
+    stack<int> stack;
+    stack.push(s);
+
+    while(!stack.empty()){
+        int s=stack.top();
+        stack.pop();
+        if(!visited[s]){
+            cout<<s<<" ";
+            visited[s]=true;
+        }
+        for(auto i=adjlist[s].begin();i!=adjlist[s].end();++i)
+        {
+            if(!visited[*i]){
+                stack.push(*i);
+            }
+        }
+    }
+}
 
 
 int main(){
